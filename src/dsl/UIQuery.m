@@ -312,58 +312,67 @@
 				[invocation setSelector:selector];
 				//NSLog(@"invocation selector = %@", NSStringFromSelector([invocation selector]));
 				[invocation setTarget:object];
-				[invocation invoke];
-				
-				const char* type = [[invocation methodSignature] methodReturnType];
-				NSString *returnType = [NSString stringWithFormat:@"%s", type];
-				const char* trimmedType = [[returnType substringToIndex:1] cStringUsingEncoding:NSASCIIStringEncoding];
-				//NSLog(@"return type = %@", returnType);
-				switch(*trimmedType) {
-					case '@':
-						[invocation getReturnValue:(void **)&objValue];
-						if (objValue == nil) {
-							[properties setObject:[NSString stringWithFormat:@"%@", objValue] forKey:key];
-						} else {
-							[properties setObject:objValue forKey:key];
+				@try {
+					[invocation invoke];
+					const char* type = [[invocation methodSignature] methodReturnType];
+					NSString *returnType = [NSString stringWithFormat:@"%s", type];
+					const char* trimmedType = [[returnType substringToIndex:1] cStringUsingEncoding:NSASCIIStringEncoding];
+					//NSLog(@"return type = %@", returnType);
+					switch(*trimmedType) {
+						case '@':
+							[invocation getReturnValue:(void **)&objValue];
+							if (objValue == nil) {
+								[properties setObject:[NSString stringWithFormat:@"%@", objValue] forKey:key];
+							} else {
+								[properties setObject:objValue forKey:key];
+							}
+							break;
+						case 'i':
+							[invocation getReturnValue:(void **)&intValue];
+							[properties setObject:[NSString stringWithFormat:@"%i", intValue] forKey:key];
+							break;
+						case 's':
+							[invocation getReturnValue:(void **)&shortValue];
+							[properties setObject:[NSString stringWithFormat:@"%ud", shortValue] forKey:key];
+							break;
+						case 'd':
+							[invocation getReturnValue:(void **)&doubleValue];
+							[properties setObject:[NSString stringWithFormat:@"%lf", doubleValue] forKey:key];
+							break;
+						case 'f':
+							[invocation getReturnValue:(void **)&floatValue];
+							[properties setObject:[NSString stringWithFormat:@"%f", floatValue] forKey:key];
+							break;
+						case 'l':
+							[invocation getReturnValue:(void **)&longValue];
+							[properties setObject:[NSString stringWithFormat:@"%ld", longValue] forKey:key];
+							break;
+						case '*':
+							[invocation getReturnValue:(void **)&charPtrValue];
+							[properties setObject:[NSString stringWithFormat:@"%s", charPtrValue] forKey:key];
+							break;
+						case 'c':
+							[invocation getReturnValue:(void **)&charValue];
+							[properties setObject:[NSString stringWithFormat:@"%d", charValue] forKey:key];
+							break;
+						case '{': {
+							unsigned int length = [[invocation methodSignature] methodReturnLength];
+							void *buffer = (void *)malloc(length);
+							[invocation getReturnValue:buffer];
+							NSValue *value = [[[NSValue alloc] initWithBytes:buffer objCType:type] autorelease];
+							[properties setObject:value forKey:key];
+							break;
 						}
-						break;
-					case 'i':
-						[invocation getReturnValue:(void **)&intValue];
-						[properties setObject:[NSString stringWithFormat:@"%i", intValue] forKey:key];
-						break;
-					case 's':
-						[invocation getReturnValue:(void **)&shortValue];
-						[properties setObject:[NSString stringWithFormat:@"%ud", shortValue] forKey:key];
-						break;
-					case 'd':
-						[invocation getReturnValue:(void **)&doubleValue];
-						[properties setObject:[NSString stringWithFormat:@"%lf", doubleValue] forKey:key];
-						break;
-					case 'f':
-						[invocation getReturnValue:(void **)&floatValue];
-						[properties setObject:[NSString stringWithFormat:@"%f", floatValue] forKey:key];
-						break;
-					case 'l':
-						[invocation getReturnValue:(void **)&longValue];
-						[properties setObject:[NSString stringWithFormat:@"%ld", longValue] forKey:key];
-						break;
-					case '*':
-						[invocation getReturnValue:(void **)&charPtrValue];
-						[properties setObject:[NSString stringWithFormat:@"%s", charPtrValue] forKey:key];
-						break;
-					case 'c':
-						[invocation getReturnValue:(void **)&charValue];
-						[properties setObject:[NSString stringWithFormat:@"%d", charValue] forKey:key];
-						break;
-					case '{': {
-						unsigned int length = [[invocation methodSignature] methodReturnLength];
-						void *buffer = (void *)malloc(length);
-						[invocation getReturnValue:buffer];
-						NSValue *value = [[[NSValue alloc] initWithBytes:buffer objCType:type] autorelease];
-						[properties setObject:value forKey:key];
-						break;
 					}
 				}
+				
+				@catch (NSException *exception)
+				{
+					// Workaround for MapKit, which is essentially a corrupt release. panoramaID dynamic property is defined, but never implemented, 
+					// causing an selector not understood exception. Here, we catch that and ignore it, rather than crashing.
+					NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
+				}
+				
 			}
 		}
 	} while ((clazz = class_getSuperclass(clazz)) != nil);

@@ -10,3 +10,4 @@ Release Date: 12/30/09
 --------------------------------------------------------------------------
 1.0 - This is the first release of UISpec - BTK
 1.1 - Includes new expectation framework with specs, UICatalog demo, UILog for custom handling of UISpec results, and bug fixes; 
+1.1a - fix for the panaramoID problem with MapKits framework.
