@@ -15,8 +15,9 @@
 +(void)runSpecsAfterDelay:(int)seconds;
 +(void)runSpec:(NSString *)specName afterDelay:(int)seconds;
 +(void)runSpec:(NSString *)specName example:(NSString *)exampleName afterDelay:(int)seconds;
++(void)runExamples:(NSArray *)examples onSpec:(Class *)class;
 +(void)setLog:(UILog *)log;
-
++(void)runServer:(int) port withArgC: (int) argc withArgV: ( char **)argv;
 @end
 
 @protocol UISpec

@@ -1,6 +1,7 @@
 #import "UISpec.h"
 #import "objc/runtime.h"
 #import "UIConsoleLog.h"
+#import "UIServer.h"
 
 @implementation UISpec
 
@@ -13,6 +14,12 @@ static UILog *logger = nil;
 +(void)setLog:(UILog *)log{
 	[logger release];
 	logger = [log retain];
+}
+
++(void)runServer:(int) port withArgC: (int) argc withArgV: ( char **)argv;
+{
+	UIServer* server = [[UIServer alloc] initWithPort: port];
+	[server runServerWithArgC: argc withArgV: argv];
 }
 
 +(void)runSpecsAfterDelay:(int)seconds {

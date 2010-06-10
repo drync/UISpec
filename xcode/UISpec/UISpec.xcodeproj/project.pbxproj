@@ -196,6 +196,18 @@
 		C7FE1DFC0F7D6D7C0047857B /* UIQueryAll.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FE1DFA0F7D6D7C0047857B /* UIQueryAll.m */; };
 		C7FE1DFD0F7D6D7C0047857B /* UIQueryAll.h in Headers */ = {isa = PBXBuildFile; fileRef = C7FE1DF90F7D6D7C0047857B /* UIQueryAll.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7FE1DFE0F7D6D7C0047857B /* UIQueryAll.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FE1DFA0F7D6D7C0047857B /* UIQueryAll.m */; };
+		D400B9CE11BB0AFE00C9D18D /* mongoose.h in Headers */ = {isa = PBXBuildFile; fileRef = D400B9CC11BB0AFE00C9D18D /* mongoose.h */; };
+		D400B9CF11BB0AFE00C9D18D /* mongoose.c in Sources */ = {isa = PBXBuildFile; fileRef = D400B9CD11BB0AFE00C9D18D /* mongoose.c */; };
+		D400B9D011BB0AFE00C9D18D /* mongoose.h in Headers */ = {isa = PBXBuildFile; fileRef = D400B9CC11BB0AFE00C9D18D /* mongoose.h */; };
+		D400B9D111BB0AFE00C9D18D /* mongoose.c in Sources */ = {isa = PBXBuildFile; fileRef = D400B9CD11BB0AFE00C9D18D /* mongoose.c */; };
+		D400B9D411BB0B1700C9D18D /* UIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D400B9D211BB0B1700C9D18D /* UIServer.h */; };
+		D400B9D511BB0B1700C9D18D /* UIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = D400B9D311BB0B1700C9D18D /* UIServer.m */; };
+		D400B9D611BB0B1700C9D18D /* UIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D400B9D211BB0B1700C9D18D /* UIServer.h */; };
+		D400B9D711BB0B1700C9D18D /* UIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = D400B9D311BB0B1700C9D18D /* UIServer.m */; };
+		D400BFF111BFC4F600C9D18D /* UIServerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D400BFEF11BFC4F600C9D18D /* UIServerLog.m */; };
+		D400BFF211BFC4F700C9D18D /* UIServerLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D400BFF011BFC4F600C9D18D /* UIServerLog.h */; };
+		D400BFF311BFC4F700C9D18D /* UIServerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D400BFEF11BFC4F600C9D18D /* UIServerLog.m */; };
+		D400BFF411BFC4F700C9D18D /* UIServerLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D400BFF011BFC4F600C9D18D /* UIServerLog.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +343,12 @@
 		C7FE1D9B0F7D6B060047857B /* ViewFilterSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFilterSwizzler.m; sourceTree = "<group>"; };
 		C7FE1DF90F7D6D7C0047857B /* UIQueryAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIQueryAll.h; sourceTree = "<group>"; };
 		C7FE1DFA0F7D6D7C0047857B /* UIQueryAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIQueryAll.m; sourceTree = "<group>"; };
+		D400B9CC11BB0AFE00C9D18D /* mongoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mongoose.h; sourceTree = "<group>"; };
+		D400B9CD11BB0AFE00C9D18D /* mongoose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mongoose.c; sourceTree = "<group>"; };
+		D400B9D211BB0B1700C9D18D /* UIServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServer.h; sourceTree = "<group>"; };
+		D400B9D311BB0B1700C9D18D /* UIServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServer.m; sourceTree = "<group>"; };
+		D400BFEF11BFC4F600C9D18D /* UIServerLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerLog.m; sourceTree = "<group>"; };
+		D400BFF011BFC4F600C9D18D /* UIServerLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerLog.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +467,10 @@
 		C76EB75A0F76DFF400EF8398 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D400BFEF11BFC4F600C9D18D /* UIServerLog.m */,
+				D400BFF011BFC4F600C9D18D /* UIServerLog.h */,
+				D400B9CC11BB0AFE00C9D18D /* mongoose.h */,
+				D400B9CD11BB0AFE00C9D18D /* mongoose.c */,
 				C77AB48E103F298700FDCEEB /* UIInspector.h */,
 				C77AB48F103F298700FDCEEB /* UIInspector.m */,
 				C7D32A91103F40DF00071AE1 /* UIConsole.h */,
@@ -467,6 +489,8 @@
 				C7E9535B0F818688005FC682 /* ReturnCacher.m */,
 				C7407B58101AA2F900E5392C /* WaitUntilIdle.h */,
 				C7407B59101AA2FA00E5392C /* WaitUntilIdle.m */,
+				D400B9D211BB0B1700C9D18D /* UIServer.h */,
+				D400B9D311BB0B1700C9D18D /* UIServer.m */,
 			);
 			name = utils;
 			path = ../../src/utils;
@@ -520,6 +544,9 @@
 				2FDBB75E10EECD0200193065 /* UIQuerySegmentedControl.h in Headers */,
 				2FDBB76010EECD0200193065 /* UIQueryTabBar.h in Headers */,
 				2FDBB76210EECD0200193065 /* UIQueryWebView.h in Headers */,
+				D400B9CE11BB0AFE00C9D18D /* mongoose.h in Headers */,
+				D400B9D611BB0B1700C9D18D /* UIServer.h in Headers */,
+				D400BFF411BFC4F700C9D18D /* UIServerLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +584,9 @@
 				2FDBB76610EECD0200193065 /* UIQuerySegmentedControl.h in Headers */,
 				2FDBB76810EECD0200193065 /* UIQueryTabBar.h in Headers */,
 				2FDBB76A10EECD0200193065 /* UIQueryWebView.h in Headers */,
+				D400B9D011BB0AFE00C9D18D /* mongoose.h in Headers */,
+				D400B9D411BB0B1700C9D18D /* UIServer.h in Headers */,
+				D400BFF211BFC4F700C9D18D /* UIServerLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +724,9 @@
 				2FDBB75F10EECD0200193065 /* UIQuerySegmentedControl.m in Sources */,
 				2FDBB76110EECD0200193065 /* UIQueryTabBar.m in Sources */,
 				2FDBB76310EECD0200193065 /* UIQueryWebView.m in Sources */,
+				D400B9CF11BB0AFE00C9D18D /* mongoose.c in Sources */,
+				D400B9D711BB0B1700C9D18D /* UIServer.m in Sources */,
+				D400BFF311BFC4F700C9D18D /* UIServerLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +762,9 @@
 				2FDBB76710EECD0200193065 /* UIQuerySegmentedControl.m in Sources */,
 				2FDBB76910EECD0200193065 /* UIQueryTabBar.m in Sources */,
 				2FDBB76B10EECD0200193065 /* UIQueryWebView.m in Sources */,
+				D400B9D111BB0AFE00C9D18D /* mongoose.c in Sources */,
+				D400B9D511BB0B1700C9D18D /* UIServer.m in Sources */,
+				D400BFF111BFC4F600C9D18D /* UIServerLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
