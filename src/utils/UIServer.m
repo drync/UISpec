@@ -239,6 +239,10 @@ static void run_result_html(struct mg_connection * conn, FILE* out_, FILE* err_,
 
 -(void) applicationDidFinishLaunchingNotification:(NSNotification*) notification;
 {
+	// Quick Hack to force load
+	UIWebView* forceAlloc = [[UIWebView alloc] initWithFrame:CGRectMake(0,36,320,331)];
+	[forceAlloc release];
+
 	status = RUNNING;
 	pthread_mutex_unlock( &started_signal );
 }
@@ -246,7 +250,8 @@ static void run_result_html(struct mg_connection * conn, FILE* out_, FILE* err_,
 -(void) started: (struct mg_connection *) conn withRequest: (const struct mg_request_info *)ri
 {
 	// wait until the app has finished starting. 
-	pthread_mutex_lock( &started_signal );	
+	if(status != RUNNING)
+		pthread_mutex_lock( &started_signal );	
 	mg_printf(conn, redirect_reply, "/status");
 
 }

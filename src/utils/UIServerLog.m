@@ -5,8 +5,8 @@
 @synthesize reportFile;
 
 - (void)dealloc {
-	[super dealloc];
     self.reportFile = nil;
+	[super dealloc];
 }
 
 -(void) logException: (NSException *)exception
