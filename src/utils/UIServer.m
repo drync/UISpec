@@ -358,7 +358,6 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 
 		@try 
 		{
-			// Must be done in main thread to prevent wierdness.
 			[self performSelectorOnMainThread: @selector(runScriptInMainThread:) withObject: xxx waitUntilDone: YES];
 		}
 		@catch (NSException *exception)
@@ -388,7 +387,12 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 			NSString* testclass = [self getVar:@"class" withConnection: conn];
 			NSString* method = [self getVar:@"method" withConnection: conn];
 			Class *class = NSClassFromString(testclass);
-			[self  performSelectorOnMainThread:@selector(runExampleInMainThread:) withObject: [NSArray arrayWithObjects: class, method, nil] waitUntilDone: YES];
+			// Must be done in main thread to prevent wierdness, unless of course we haven't started the app yet.
+			if(RUNNING == status) 
+				[self  performSelectorOnMainThread:@selector(runExampleInMainThread:) withObject: [NSArray arrayWithObjects: class, method, nil] waitUntilDone: YES];
+			else
+				[self runExampleInMainThread:[NSArray arrayWithObjects: class, method, nil]];
+
 		}
 		@catch (NSException *exception)
 		{
