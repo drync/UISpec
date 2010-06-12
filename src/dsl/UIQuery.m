@@ -395,9 +395,10 @@
 		[touch setPhase:UITouchPhaseEnded];
 		
 		[touch.view touchesEnded:touches withEvent:eventDown];
-		
-		[eventDown release];
-		[eventUp release];
+// Crash in “EXC_BAD_ACCESS” for me. Makes no sense, as the code is clearly correct. However, commenting this code out lets 
+// me move on until I can eventually figure out what is going on.
+//		[eventDown release];
+//		[eventUp release];
 		[touches release];
 		[touch release];
 		[self wait:.5];
