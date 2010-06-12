@@ -312,7 +312,20 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 		run_result_html(conn, out_, err_, failuresPath);
 	
 }
-	
+
+// Convenience methods to run this stuff in the main thread. Not running the main thread causing strange behaviour, 
+// especially with "touch". At least, that's where I first noticed it - big ugly crash in 'touch'.
+-(void) runScriptInMainThread: (NSMutableString*) script
+{
+	$(script);
+}
+
+-(void) runExampleInMainThread:(NSArray*) parameters
+{
+	Class* class = [parameters objectAtIndex: 0];
+	NSString* method = [parameters objectAtIndex: 1];
+    [UISpec runExamples:[NSArray arrayWithObject:method] onSpec:class];
+}
 
 -(void) run: (struct mg_connection *) conn withRequest: (const struct mg_request_info *)ri
 {
@@ -345,7 +358,8 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 
 		@try 
 		{
-			$(xxx); // trying to call $(script) in UIScript ,, hmmm 
+			// Must be done in main thread to prevent wierdness.
+			[self performSelectorOnMainThread: @selector(runScriptInMainThread:) withObject: xxx waitUntilDone: YES];
 		}
 		@catch (NSException *exception)
 		{
@@ -374,7 +388,7 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 			NSString* testclass = [self getVar:@"class" withConnection: conn];
 			NSString* method = [self getVar:@"method" withConnection: conn];
 			Class *class = NSClassFromString(testclass);
-			[UISpec runExamples:[NSArray arrayWithObject:method] onSpec:class];
+			[self  performSelectorOnMainThread:@selector(runExampleInMainThread:) withObject: [NSArray arrayWithObjects: class, method, nil] waitUntilDone: YES];
 		}
 		@catch (NSException *exception)
 		{
