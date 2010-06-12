@@ -305,7 +305,9 @@
 			}
 			
 			SEL selector = NSSelectorFromString(key);
-			if ([object respondsToSelector:selector]) {
+			// After working with this, the panoramaID exception is too noisy to work around, and is interfering with
+			// seeing real bugs, so we'll skip calling it.
+			if ([object respondsToSelector:selector] && !strcmp(propertyName, "_mapkit_hasPanoramaID")) {
 				NSMethodSignature *sig = [object methodSignatureForSelector:selector];
 				//NSLog(@"sig = %@", sig);
 				NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
