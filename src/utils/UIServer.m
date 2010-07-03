@@ -387,8 +387,14 @@ static char* sStatusArray[] = {"STOPPED", "STARTING", "RUNNING" };
 			NSString* testclass = [self getVar:@"class" withConnection: conn];
 			NSString* method = [self getVar:@"method" withConnection: conn];
 			Class *class = NSClassFromString(testclass);
+			if(class == nil)
+			{
+				FILE* failures_ = fopen([failuresPath cStringUsingEncoding: [NSString defaultCStringEncoding]], "w+");
+				fprintf(failures_, "testclass '%s' does not exist", [testclass cStringUsingEncoding: [NSString defaultCStringEncoding]]);
+				fclose(failures_);
+			}
 			// Must be done in main thread to prevent wierdness, unless of course we haven't started the app yet.
-			if(RUNNING == status) 
+			else if(RUNNING == status) 
 				[self  performSelectorOnMainThread:@selector(runExampleInMainThread:) withObject: [NSArray arrayWithObjects: class, method, nil] waitUntilDone: YES];
 			else
 				[self runExampleInMainThread:[NSArray arrayWithObjects: class, method, nil]];
