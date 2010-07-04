@@ -263,9 +263,14 @@
 
 +(void)show:(NSArray *)views {
 	for (UIView *view in views) {
-		NSMutableDictionary *dict = [self describe:view];
-		if ([dict allKeys].count > 0) {
-			NSLog(@"\nClass: %@ \n%@", [view class], [dict description]);
+		if([self respondsToSelector:@selector(describe:)])
+		{
+			NSMutableDictionary *dict = [self describe:view];
+			if ([dict allKeys].count > 0) 
+				NSLog(@"\nClass: %@ \n%@", [view class], [dict description]);
+		}
+		else {
+			NSLog(@"\nClass: %@ \n(missing describe: implementation)", [view class]);
 		}
 	}
 }
