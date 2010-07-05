@@ -12,6 +12,7 @@
 #import "UIQueryTabBar.h"
 #import "UIQuerySegmentedControl.h"
 #import "UIQueryWebView.h"
+#import "UIQueryPickerView.h"
 #import "UIQueryAll.h"
 #import "UIFilter.h"
 #import "UIBug.h"
@@ -145,6 +146,9 @@
 	}
 	else if ([className isEqualToString:@"UIWebView"]) {
 		return [UIQueryWebView withViews:array className:className];
+	}
+	else if ([className isEqualToString:@"UIPickerView"]) {
+		return [UIQueryPickerView withViews:array className:className];
 	}
 	else {
 		return [UIQuery withViews:array className:className];

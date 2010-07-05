@@ -208,6 +208,10 @@
 		D400BFF211BFC4F700C9D18D /* UIServerLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D400BFF011BFC4F600C9D18D /* UIServerLog.h */; };
 		D400BFF311BFC4F700C9D18D /* UIServerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D400BFEF11BFC4F600C9D18D /* UIServerLog.m */; };
 		D400BFF411BFC4F700C9D18D /* UIServerLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D400BFF011BFC4F600C9D18D /* UIServerLog.h */; };
+		D48B96EC11E2272E006116F5 /* UIQueryPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48B96EA11E2272E006116F5 /* UIQueryPickerView.m */; };
+		D48B96ED11E2272E006116F5 /* UIQueryPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = D48B96EB11E2272E006116F5 /* UIQueryPickerView.h */; };
+		D48B96EE11E2272E006116F5 /* UIQueryPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48B96EA11E2272E006116F5 /* UIQueryPickerView.m */; };
+		D48B96EF11E2272E006116F5 /* UIQueryPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = D48B96EB11E2272E006116F5 /* UIQueryPickerView.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +353,8 @@
 		D400B9D311BB0B1700C9D18D /* UIServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServer.m; sourceTree = "<group>"; };
 		D400BFEF11BFC4F600C9D18D /* UIServerLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerLog.m; sourceTree = "<group>"; };
 		D400BFF011BFC4F600C9D18D /* UIServerLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerLog.h; sourceTree = "<group>"; };
+		D48B96EA11E2272E006116F5 /* UIQueryPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIQueryPickerView.m; sourceTree = "<group>"; };
+		D48B96EB11E2272E006116F5 /* UIQueryPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIQueryPickerView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +423,8 @@
 		C76EB7500F76DFF400EF8398 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				D48B96EA11E2272E006116F5 /* UIQueryPickerView.m */,
+				D48B96EB11E2272E006116F5 /* UIQueryPickerView.h */,
 				2FDBB75410EECD0200193065 /* UIQuerySearchBar.h */,
 				2FDBB75510EECD0200193065 /* UIQuerySearchBar.m */,
 				2FDBB75610EECD0200193065 /* UIQuerySegmentedControl.h */,
@@ -547,6 +555,7 @@
 				D400B9CE11BB0AFE00C9D18D /* mongoose.h in Headers */,
 				D400B9D611BB0B1700C9D18D /* UIServer.h in Headers */,
 				D400BFF411BFC4F700C9D18D /* UIServerLog.h in Headers */,
+				D48B96EF11E2272E006116F5 /* UIQueryPickerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +596,7 @@
 				D400B9D011BB0AFE00C9D18D /* mongoose.h in Headers */,
 				D400B9D411BB0B1700C9D18D /* UIServer.h in Headers */,
 				D400BFF211BFC4F700C9D18D /* UIServerLog.h in Headers */,
+				D48B96ED11E2272E006116F5 /* UIQueryPickerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +737,7 @@
 				D400B9CF11BB0AFE00C9D18D /* mongoose.c in Sources */,
 				D400B9D711BB0B1700C9D18D /* UIServer.m in Sources */,
 				D400BFF311BFC4F700C9D18D /* UIServerLog.m in Sources */,
+				D48B96EE11E2272E006116F5 /* UIQueryPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +776,7 @@
 				D400B9D111BB0AFE00C9D18D /* mongoose.c in Sources */,
 				D400B9D511BB0B1700C9D18D /* UIServer.m in Sources */,
 				D400BFF111BFC4F600C9D18D /* UIServerLog.m in Sources */,
+				D48B96EC11E2272E006116F5 /* UIQueryPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
