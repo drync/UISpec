@@ -11,6 +11,8 @@
 @interface UIQueryWebView : UIQuery {
 	
 }
+-(UIQuery *)setValue:(NSString *)value forElementWithName:(NSString *)elementId;
+-(UIQuery *)clickElementWithName:(NSString *)elementId;
 -(UIQuery *)setValue:(NSString *)value forElementWithId:(NSString *)elementId;
 -(UIQuery *)clickElementWithId:(NSString *)elementId;
 -(NSString *)html;

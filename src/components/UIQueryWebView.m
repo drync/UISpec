@@ -3,6 +3,31 @@
 
 @implementation UIQueryWebView
 
+-(UIQuery *)setValue:(NSString *)value forElementWithName:(NSString *)elementName {
+	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').val('%@');", elementName, value];
+	NSString *javascript = [NSString stringWithFormat:@"document.getElementsByName('%@')[0].value = '%@';", elementName, value];
+	
+	//if(![self jQuerySupported])
+//		[self injectjQuery];
+	
+	[self stringByEvaluatingJavaScriptFromString:javascript];
+	return [UIQuery withViews:views className:className];
+}
+
+-(UIQuery *)clickElementWithName:(NSString *)elementName {	
+	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').click();", elementName];
+	NSString *javascript = [NSString stringWithFormat:@"document.getElementsByName('%@')[0].click();", elementName];
+	//if(![self jQuerySupported]) 
+//		[self injectjQuery];
+	
+	//	javascript = [NSString stringWithFormat:@"$('#%@').click();", elementName];
+//	else 
+//		javascript = [NSString stringWithFormat:@"document.getElementByName('%@').click();", elementName];
+	
+	[self stringByEvaluatingJavaScriptFromString:javascript];
+	return [UIQuery withViews:views className:className];
+}
+
 -(UIQuery *)setValue:(NSString *)value forElementWithId:(NSString *)elementId {
 	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').val('%@');", elementId, value];
 	NSString *javascript = [NSString stringWithFormat:@"document.getElementById('%@').value = '%@';", elementId, value];
