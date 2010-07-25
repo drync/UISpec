@@ -1,11 +1,30 @@
 
 #import "UIQueryWebView.h"
 
+static NSString* kClickJS = @"\
+var ele = %@; \
+if(ele.attributes['onclick']) \
+eval(ele.attributes['onclick'].value); \
+else \
+ele.click()";
+
+static NSString* locateByIdJS(NSString* elementName)
+{
+	return[NSString stringWithFormat:@"document.getElementById('%@')", elementName];
+}
+
+static NSString* locateByNameJS(NSString* elementName)
+{
+	return[NSString stringWithFormat:@"document.getElementsByName('%@')[0]", elementName];
+}
+
 @implementation UIQueryWebView
+
+
 
 -(UIQuery *)setValue:(NSString *)value forElementWithName:(NSString *)elementName {
 	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').val('%@');", elementName, value];
-	NSString *javascript = [NSString stringWithFormat:@"document.getElementsByName('%@')[0].value = '%@';", elementName, value];
+	NSString *javascript = [NSString stringWithFormat:@"%@.value = '%@';", locateByNameJS(elementName), value];
 	
 	//if(![self jQuerySupported])
 //		[self injectjQuery];
@@ -14,41 +33,21 @@
 	return [UIQuery withViews:views className:className];
 }
 
+
 -(UIQuery *)clickElementWithName:(NSString *)elementName {	
-	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').click();", elementName];
-	NSString *javascript = [NSString stringWithFormat:@"document.getElementsByName('%@')[0].click();", elementName];
-	//if(![self jQuerySupported]) 
-//		[self injectjQuery];
-	
-	//	javascript = [NSString stringWithFormat:@"$('#%@').click();", elementName];
-//	else 
-//		javascript = [NSString stringWithFormat:@"document.getElementByName('%@').click();", elementName];
-	
+	NSString *javascript = [NSString stringWithFormat:kClickJS, locateByNameJS(elementName)];
 	[self stringByEvaluatingJavaScriptFromString:javascript];
 	return [UIQuery withViews:views className:className];
 }
 
 -(UIQuery *)setValue:(NSString *)value forElementWithId:(NSString *)elementId {
-	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').val('%@');", elementId, value];
-	NSString *javascript = [NSString stringWithFormat:@"document.getElementById('%@').value = '%@';", elementId, value];
-	
-	//if(![self jQuerySupported])
-//		[self injectjQuery];
-	
+	NSString *javascript = [NSString stringWithFormat:@"%@.value = '%@';", locateByIdJS(elementId), value];
 	[self stringByEvaluatingJavaScriptFromString:javascript];
 	return [UIQuery withViews:views className:className];
 }
 
 -(UIQuery *)clickElementWithId:(NSString *)elementId {	
-	//NSString *javascript = [NSString stringWithFormat:@"$('#%@').click();", elementId];
-	NSString *javascript = [NSString stringWithFormat:@"document.getElementById('%@').click();", elementId];
-	//if(![self jQuerySupported]) 
-//		[self injectjQuery];
-	
-	//	javascript = [NSString stringWithFormat:@"$('#%@').click();", elementId];
-//	else 
-//		javascript = [NSString stringWithFormat:@"document.getElementById('%@').click();", elementId];
-	
+	NSString *javascript = [NSString stringWithFormat:kClickJS, locateByIdJS(elementId)];
 	[self stringByEvaluatingJavaScriptFromString:javascript];
 	return [UIQuery withViews:views className:className];
 }
@@ -72,6 +71,19 @@
 
 -(NSString *) html {
 	return [self stringByEvaluatingJavaScriptFromString: @"document.body.innerHTML"];
+}
+
+// Beware - dragons here! Returning an object is ok, but if you return a simple type, like say a BOOL, then you'll get an obscure error in the UIRedoer where UISpec is doing
+// something funny. Probably essential, also, but definitely that code needs either nil or a real object returned. 
+-(NSString*) findElementWithName:(NSString *)elementName
+{
+	NSString* tmp = [self stringByEvaluatingJavaScriptFromString:locateByNameJS(elementName)];
+	return tmp != NULL;
+}
+
+-(NSString*) findElementWithId:(NSString *)elementId
+{
+	return [self stringByEvaluatingJavaScriptFromString: locateByIdJS(elementId)];
 }
 
 @end
