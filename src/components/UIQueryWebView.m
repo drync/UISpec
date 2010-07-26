@@ -78,7 +78,7 @@ static NSString* locateByNameJS(NSString* elementName)
 -(NSString*) findElementWithName:(NSString *)elementName
 {
 	NSString* tmp = [self stringByEvaluatingJavaScriptFromString:locateByNameJS(elementName)];
-	return tmp != NULL;
+	return tmp;
 }
 
 -(NSString*) findElementWithId:(NSString *)elementId
