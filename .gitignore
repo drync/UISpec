@@ -4,3 +4,4 @@ xcode/UISpec/build/*
 xcode/UISpecDemo/UISpecDemo.xcodeproj/*.mode1v3
 xcode/UISpecDemo/UISpecDemo.xcodeproj/*.pbxuser
 xcode/UISpecDemo/build/*
+xcuserdata
